@@ -4,7 +4,7 @@ services:
   db:
     image: postgres:alpine
     volumes:
-      - ./db:/var/lib/postgresql/data/pgdata
+      - ./db:/var/lib/postgresql
     ports:
       - "5432"
 
@@ -16,5 +16,5 @@ services:
     command: mix phoenix.server
     ports:
       - "4000:4000"
-    depends_on:
-      - db
+    links:
+      - db:db
